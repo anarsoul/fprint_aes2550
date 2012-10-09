@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		if (!fread(&header, sizeof(header), 1, in))
 			break;
 		frame_size = header.size_msb * 256 + header.size_lsb;
-		printf("Frame type is %.2x, size %.4x\n", (int)header.type, frame_size);
+		printf("Frame type is %.2x, size %.4x, offset %.8x\n", (int)header.type, frame_size, ftell(in));
 		if (header.type != 0xe0) {
 			fseek(in, frame_size, SEEK_CUR);
 			continue;
