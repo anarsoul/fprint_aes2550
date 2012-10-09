@@ -225,8 +225,10 @@ static int aes2550_get_enroll_image(libusb_device_handle *h)
 			break;
 		msg("Got buffer of size %d\n", actual_len);
 		fwrite(cmd_res, 1, actual_len, dump);
+#if 0
 		if (actual_len < 8192)
 			break;
+#endif
 	} while (r == 0 && !aborted);
 	r = aes2550_reg_write(h, 0x80, 0x01);
 
